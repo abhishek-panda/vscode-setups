@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "buildDir",
+            "type": "shell",
+            "command": "rm -rf build && mkdir build"
+        },
+        {
+            "label": "Build with Clang",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-std=c++17",
+                "-stdlib=libc++",
+                "./src/main.c",
+                "-o",
+                "./build/${workspaceFolderBasename}",
+                "--debug"
+            ],
+            "dependsOn": [
+                "buildDir"
+            ]
+        },
+        {
+            "label": "Run with Clang",
+            "type": "shell",
+            "command": "./build/${workspaceFolderBasename}",
+            "dependsOn": [
+                "Build with Clang"
+            ]
+        }
+    ]
+}
