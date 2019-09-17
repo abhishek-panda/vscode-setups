@@ -4,33 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "buildDir",
+            "label": "Make run",
             "type": "shell",
-            "command": "rm -rf build && mkdir build"
+            "command": "rm -rf build && mkdir build && make run"
         },
         {
-            "label": "Build with Clang",
+            "label": "Make clean",
             "type": "shell",
-            "command": "clang++",
-            "args": [
-                "-std=c++17",
-                "-stdlib=libc++",
-                "./src/main.c",
-                "-o",
-                "./build/${workspaceFolderBasename}",
-                "--debug"
-            ],
-            "dependsOn": [
-                "buildDir"
-            ]
-        },
-        {
-            "label": "Run with Clang",
-            "type": "shell",
-            "command": "./build/${workspaceFolderBasename}",
-            "dependsOn": [
-                "Build with Clang"
-            ]
+            "command": "make clean"
         }
     ]
 }
